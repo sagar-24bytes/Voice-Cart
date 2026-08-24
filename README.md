@@ -1,8 +1,13 @@
 # 🛒 VoiceCart — Voice-Powered Smart Shopping Assistant
 
-A production-quality, voice-driven shopping list manager built entirely in Python with **Streamlit**. Speak your commands, get smart suggestions, and manage your grocery list — all for free, with no paid APIs.
+VoiceCart is a voice-driven shopping assistant built with Python and Streamlit that uses NLP to understand shopping commands, manage and categorize shopping lists, search products, and provide smart suggestions based on purchase history, seasonality, and available substitutes.
 
 ---
+## 🌐 Live Application
+
+**Working Application:** https://voice-cartsc.streamlit.app/
+
+> Open the application in Chrome or Edge for the best voice-input experience.
 
 ## ✨ Features
 
@@ -10,12 +15,12 @@ A production-quality, voice-driven shopping list manager built entirely in Pytho
 |---|---|
 | 🎤 Voice input | `st.audio_input` → Google Speech API (free, no key) |
 | 🌐 4 languages | English, Hindi, Spanish, French |
-| 🧠 NLP parser | Rule-based — handles 30+ phrasings per intent |
+| 🧠 NLP parser | Rule-based -> handles 30+ phrasings per intent |
 | 💡 Smart suggestions | History-based, seasonal, and substitute recommendations |
 | 📋 Shopping list | Auto-categorised, grouped by aisle, with ± controls |
 | 🔍 Catalog search | Voice + text + price slider + organic filter |
-| 💾 Persistence | SQLite (built-in Python — zero extra infra) |
-| 🚀 Deploy | Streamlit Community Cloud — zero config |
+| 💾 Persistence | SQLite |
+| 🚀 Deploy | Streamlit Community Cloud |
 
 ---
 
@@ -43,7 +48,6 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The app opens at **http://localhost:8501** in your browser.
 
 > **Microphone note:** Use Chrome or Edge for best mic support. Firefox may block `st.audio_input` in some configurations.
 
@@ -152,32 +156,12 @@ If a catalog item is marked `"out_of_stock": true` and the user has it on their 
 | **No real-time streaming** | Streamlit's execution model reruns the script on each interaction; true real-time audio streaming is not supported. |
 | **Hindi/Spanish NLP** | Support is demonstrative — limited to common transliterations that SpeechRecognition produces for those languages. |
 
----
-
-## ☁️ Deploy to Streamlit Community Cloud (Free)
-
-1. **Push to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: VoiceCart"
-   git remote add origin https://github.com/<your-username>/VoiceCart.git
-   git push -u origin main
-   ```
-
-2. **Go to [share.streamlit.io](https://share.streamlit.io)** and sign in with GitHub.
-
-3. Click **"New app"** → select your repo → set **Main file path** to `app.py`.
-
-4. Click **Deploy** — no environment variables needed. The app is live in ~2 minutes.
-
-> **Note:** Keep `voicecart.db` in `.gitignore` (it already is). The DB is auto-created fresh on each deploy.
 
 ---
 
 ## 🛠️ Development Notes
 
-- All dependencies listed in `requirements.txt` are strictly required — no extras.
+- All dependencies listed in `requirements.txt` are strictly required - no extras.
 - `pydub` handles audio format conversion if `st.audio_input` returns a non-WAV format (browser-dependent). It is listed as a dependency for reliability.
 - To add a new language to the NLP parser, simply append native-language keywords to `ADD_KEYWORDS`, `REMOVE_KEYWORDS`, etc. in `nlp.py`.
 - To add products to the catalog, edit `data/products.json` — no code changes needed.
