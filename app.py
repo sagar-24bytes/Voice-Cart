@@ -771,7 +771,7 @@ with tab_search:
         else:
             st.markdown(
                 f"<small style='color:#64748b;'>{len(results)} result(s) for "
-                f"<strong style='color:#60a5fa;'>"{query}"</strong></small>",
+                f"<strong style='color:#60a5fa;'>{query}</strong></small>",
                 unsafe_allow_html=True,
             )
 
